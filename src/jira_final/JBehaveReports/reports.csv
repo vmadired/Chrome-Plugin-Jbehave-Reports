@@ -1,0 +1,3 @@
+Stories,Scenarios,ScenariosSuccessful,ScenariosPending,ScenariosFailed,ScenariosNotAllowed,GivenStories,GivenStoryScenarios,GivenStoryScenariosSuccessful,GivenStoryScenariosPending,GivenStoryScenariosFailed,GivenStoryScenariosNotAllowed,Steps,StepsSuccessful,StepsPending,StepsFailed,StepsNotPerformed,StepsIgnorable
+(Totals),5,3,0,2,0,0,0,0,0,0,0,33,17,0,2,14,0
+Emc.beacon.web.projectfiles.stories.clipboard.PF Clipboard PvtFolderCpMvToPubFolder,5,3,0,2,0,0,0,0,0,0,0,33,17,0,2,14,0

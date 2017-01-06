@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "Create Defect",
+  "description": "This plugin integrates jbheave reports with jira",
+  "version": "1.0",
+  /*"browser_action": {
+    "default_icon": "./images/file_defect.png",
+    "default_title": "Create_Defect",
+    "default_popup": "create_defect.html"
+  },*/
+  "background": {
+    "scripts": [
+      "./js/create_defect.js",
+      "./js/jquery-2.1.4.min.js"
+    ]
+  },
+  "permissions": [
+    "activeTab",
+    "http://*/*",
+    "https://*/*",
+    "storage",
+    "http://iigjiragile.corp.emc.com:8080/*/*"
+  ],
+  "app": {
+    "launch": {
+      "local_path": "create_defect.html"
+    }
+  }
+}

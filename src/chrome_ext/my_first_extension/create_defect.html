@@ -1,0 +1,157 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "create_defect.html".
+ -->
+<html>
+<head>
+
+    <title>Create Defect</title>
+    <link rel="stylesheet" type="text/css" href="css/jira.css">
+
+
+    <style type="text/css">
+        html {
+            width: 800px;
+            height: 600px;
+        }
+
+        body {
+            height: 700px;
+        }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script type="text/javascript" src="js/create_defect.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+</head>
+<body>
+<h1 title="Create Issue">Create Issue</h1>
+
+
+<form name="jiraform" class="aui">
+
+
+    <div class="field-group">
+        <label for="jira_url">Jira URL<span class="aui-icon icon-required">Required</span></label>
+        <input class="text long-field" id="jira_url" type="text"
+               value="http://iigjiragile.corp.emc.com:8080">
+
+        <div class="description">Ensure that you are already logged in to above URL on current browser
+        </div>
+    </div>
+
+    <br>
+
+    <div class="field-group">
+        <label for="project">Project<span class="aui-icon icon-required">Required</span></label>
+        <strong title="DEMOP" id="project" class="value type-textfield">Saas Admin Apps
+        </strong>
+    </div>
+
+    <br>
+
+    <div class="field-group">
+        <label for="scenario">Scenario<span class="aui-icon icon-required">Required</span></label>
+        <input class="text" id="scenario" name="scenario" type="text" value=""/>
+        <input class="button" id="get_scenario" type="button" value="GET"/>
+    </div>
+
+    <br>
+
+    <div class="field-group">
+        <label for="summary">Summary<span class="aui-icon icon-required">Required</span></label>
+        <input class="text long-field" id="summary" name="summary" type="text" value=""/>
+    </div>
+
+    <br>
+
+    <div class="field-group">
+        <label for="customfield_10111">Severity<span class="aui-icon icon-required">Required</span></label>
+        <select class="select cf-select" name="customfield_10111" id="customfield_10111">
+            <option value="">None</option>
+            <option value="Sev1">Sev1</option>
+            <option value="Sev2">Sev2</option>
+            <option value="Sev3">Sev3</option>
+        </select>
+    </div>
+
+    <br>
+
+    <div class="field-group aui-field-componentspicker frother-control-renderer">
+        <label for="components">Component/s<span class="aui-icon icon-required">Required</span></label>
+
+        <select class="select multi-select-select" id="components" multiple="multiple" name="components" size="2"
+                data-remove-null-options="true" data-submit-input-val="true" data-input-text=""
+                data-create-permission="false">
+            <option title="Component 1 " value="Component 1">
+                Component 1
+            </option>
+            <option title="Component 2 " value="Component 2">
+                Component 2
+            </option>
+        </select>
+
+    </div>
+
+    <br>
+
+    <div class="field-group">
+        <label for="customfield_10104">Found in Build/s</label>
+
+        <input class="textfield text long-field" id="customfield_10104" name="customfield_10104" maxlength="254"
+               type="text" value="">
+
+        <div class="description">To which build of the product does this issue apply? Indicate "NA" if not applicable
+        </div>
+    </div>
+
+    <br>
+
+    <div class="field-group">
+        <label for="customfield_10112">Environment URL</label>
+        <input class="text" id="customfield_10112" name="customfield_10112" type="text" value="">
+    </div>
+
+    <br>
+
+
+    <div class="field-group">
+        <label for="description">Description</label>
+
+        <div class="wiki-edit">
+            <div id="description-wiki-edit" class="wiki-edit-content">
+            <textarea class="textarea long-field wiki-textfield long-field mentionable" id="description"
+                      name="description" rows="12" wrap="virtual" data-projectkey="SAASADMIN"></textarea>
+
+                <div class="content-inner">
+                </div>
+            </div>
+        </div>
+        <div class="field-tools">
+            <a class="fullscreen" href="#" id="description-preview_link" title="preview"><span
+                    class="aui-icon wiki-renderer-icon"></span></a>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="field-group">
+        <input accesskey="s" class="button" id="create-issue-submit" type="button" value="Create">
+        <a href="#" class="cancel">Cancel</a>
+    </div>
+</form>
+
+
+</body>
+</html>
+

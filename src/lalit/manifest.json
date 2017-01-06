@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "Create Defect",
+  "description": "Create defect from jbehave reports",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "http://iigjiragile.corp.emc.com:8080/*",
+	"http://stackoverflow.com/questions/22018718/iframe-not-able-to-load-website-properly",
+	"file:///C:/new/JBehaveReports/view/com.emc.beacon.web.projectfiles.stories.clipboard.PF_Clipboard_PvtFolderCpMvToPubFolder.html"
+	//"http://www.google.com"
+  ]
+,
+//  "content_security_policy": "http://iigjiragile.corp.emc.com:8080/"
+	"content_security_policy": "script-src 'self' http://code.jquery.com/jquery-2.2.1.min.js; object-src 'self'"
+}

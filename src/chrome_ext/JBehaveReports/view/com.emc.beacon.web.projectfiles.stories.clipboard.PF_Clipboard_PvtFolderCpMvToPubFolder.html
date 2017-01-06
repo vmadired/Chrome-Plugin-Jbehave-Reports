@@ -1,0 +1,221 @@
+<html>
+<head>
+<title>com.emc.beacon.web.projectfiles.stories.clipboard.PF_Clipboard_PvtFolderCpMvToPubFolder</title>
+<style type="text/css" media="all">
+@import url( "./style/jbehave-core.css" );
+</style>
+</head>
+<body>
+<div class="story">
+<h1></h1>
+<div class="path">com/emc/beacon/web/projectfiles/stories/clipboard/PF_Clipboard_PvtFolderCpMvToPubFolder.story</div>
+<div class="scenario">
+<h2>Scenario: Test data creation</h2>
+<div class="step successful">Given CL_Clipboard_7: create space <span class="step parameter">{ name: &quot;Circular Capital Project 3865&quot;, projectCode: &quot;SIMPLE&quot;, projects: [ { name: &quot;Contract 1&quot;, submittalIdPrefix: &quot;SIMPLE&quot; }   ] }  </span> with rest as <span class="step parameter">{ email: &quot;alex@ngis.com&quot;, password: &quot;Password@123&quot; }</span></div>
+<div class="step successful">And login with user data <span class="step parameter">{ email: &quot;alex@ngis.com&quot;, password: &quot;Password@123&quot; }</span></div>
+</div>
+<div class="scenario">
+<h2>Scenario: User navigates to Content Library</h2>
+<div class="step successful">When user go to dashboard</div>
+<div class="step successful">And user view the project <span class="step parameter">Contract 1</span> of space <span class="step parameter">Circular Capital Project 3865</span></div>
+<div class="step successful">And user goes to project files page</div>
+</div>
+<div class="scenario">
+<h2>Scenario: User attempts to copy a private folder to public folder</h2>
+<div class="step successful">When user creates a private folder with <span class="step parameter">{ name: &quot;Private Folder For Copy&quot;, description: &quot;Private Folder Description&quot;, membershipType: &quot;RESTRICTED&quot; }</span></div>
+<div class="step successful">And user navigates to folder <span class="step parameter">Private Folder For Copy</span></div>
+<div class="step successful">And user creates a folder with <span class="step parameter">{ name: &quot;Subfolder&quot;, description: &quot;Subfolder Description&quot; }</span></div>
+<div class="step successful">And user copies to clipboard the item with the name <span class="step parameter">Subfolder</span></div>
+<div class="step successful">Given path to root folder</div>
+<div class="step successful">When user creates a folder with <span class="step parameter">{ name: &quot;Public Folder For Copy&quot;, description: &quot;Public Folder Description&quot; }</span></div>
+<div class="step successful">And user navigates to folder <span class="step parameter">Public Folder For Copy</span></div>
+<div class="step successful">And user creates a folder with <span class="step parameter">{ name: &quot;Another Folder&quot;, description: &quot;Another Folder Description&quot; }</span></div>
+<div class="step successful">And user navigates to folder <span class="step parameter">Another Folder</span></div>
+<div class="step successful">And user clicks copy here</div>
+<div class="step failed">Then verify copy error details as <span class="step parameter">{ errorText: &quot;Item below requires your action.&quot;, folderName: Subfolder, reasonText: &quot;Item will become public&quot; }</span> <span class="keyword failed">(FAILED)</span></div>
+<div class="failure" style="border-width: 1px; border-style: dotted; border-color: black; width: 800px; "><a href="../screenshort_20150512-154030.png" target="_blank"><img border=0 src="../screenshort_20150512-154030.png" width=800 height=600 /></a><br></div>
+<div class="failure">
+<pre class="failure">com.emc.auto.web.exceptions.ComponentGetPropertyException: 
+fail to get property of a component. 
+	Component          = BDD_jQuery(BDD_jFindBySelector('#clipboard-alert-details-table'))
+	Property           = .find('tbody').find('tr')[0].cells.length
+
+
+	Snapshort       = [C:/BuildAgent/work/3be2949307100377/depot/ProcessSuite/xCPSaaS/Main/QE/BeaconNG/beaconng-web/beacon-web-test/target/jbehave\screenshort_20150512-154030.png]
+	at com.emc.auto.web.comp.ComponentAdaptorBase.getMethodProp(ComponentAdaptorBase.java:133)
+	at com.emc.auto.web.comp.html.HTMLTable.getColCount(HTMLTable.java:49)
+	at com.emc.auto.web.comp.html.HTMLTable.getDisplayedStringsByRow(HTMLTable.java:106)
+	at com.emc.beacon.web.comp.ContentLibResolveIssueDialog.getErrorDetails(ContentLibResolveIssueDialog.java:54)
+	at com.emc.beacon.web.pages.ProjectFilesPage.verifyErrorDetails(ProjectFilesPage.java:493)
+	at com.emc.beacon.web.projectfiles.steps.ClipboardSteps.verifyFailureReason(ClipboardSteps.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.jbehave.core.steps.StepCreator$ParametrisedStep.perform(StepCreator.java:595)
+	at com.emc.auto.web.jbehave_ext.StepRetryDecorator.perform(StepRetryDecorator.java:47)
+	at org.jbehave.core.embedder.StoryRunner$FineSoFar.run(StoryRunner.java:535)
+	at org.jbehave.core.embedder.StoryRunner.runStepsWhileKeepingState(StoryRunner.java:515)
+	at org.jbehave.core.embedder.StoryRunner.runScenarioSteps(StoryRunner.java:479)
+	at org.jbehave.core.embedder.StoryRunner.runStepsWithLifecycle(StoryRunner.java:445)
+	at org.jbehave.core.embedder.StoryRunner.runCancellable(StoryRunner.java:305)
+	at org.jbehave.core.embedder.StoryRunner.run(StoryRunner.java:220)
+	at org.jbehave.core.embedder.StoryRunner.run(StoryRunner.java:181)
+	at org.jbehave.core.embedder.StoryManager$EnqueuedStory.call(StoryManager.java:262)
+	at org.jbehave.core.embedder.StoryManager$EnqueuedStory.call(StoryManager.java:229)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:722)
+Caused by: com.emc.auto.web.exceptions.JavascriptExecutionException: 
+	Current page title = Supplier Exchange - Project Files
+	Current URL 	   = http://xchange-fffull197.plengiscf-platqe.dctmlabs.com/#/saas_beacon_project/folders%252Fsaas_beacon_project%252F%2525252Fspaces%2525252F41990940-1db1-4e8c-b643-6e0b6297cc44%2525252Fobjects%2525252Facd6cd1ed49f44d49956c65bd05ff369%2525252F/saas_project_files/folder/folders%252Fsaas_basefolder%252F%2525252Fspaces%2525252F41990940-1db1-4e8c-b643-6e0b6297cc44%2525252Fobjects%2525252Fb6aa666c5a0a4cce98eacd373f7bd0f5%2525252F
+	Server Time 	   = Tue May 12 22:40:54 PDT 2015	(This is approximate server time when error occurred, as server might be handling multiple requests)
+	Message         = 
+	Error              = a javascript is failed to run.
+	Script             = if(typeof BDD_jFilter=='undefined'){BDD_jFilter=function(e){var t=[];for(var n=0;n&lt;e.length;++n){if(typeof e[n]!='undefined'&amp;&amp;e[n]!=undefined&amp;&amp;e[n].offsetWidth&gt;1){e[n].jFind=function(e){var t=$(this).find(e);return BDD_jFilter(t)};t.push(e[n])}}return $(t)}}if(typeof BDD_jQuery=='undefined'){BDD_jQuery=function(e){return BDD_jFilter($(e))}}if(typeof BDD_jFindByAttr=='undefined'){BDD_jFindByAttr=function(e,t,n){var r=e+&quot;[&quot;+t+&quot;='&quot;+n+&quot;']&quot;;return $(r)}}if(typeof BDD_jFindBySelector=='undefined'){BDD_jFindBySelector=function(e){return $(e)}}if(typeof BDD_GenId=='undefined'){BDD_GenId=function(e){var t=e.id;var n='genkey_';var r=new Date;if(t=='undefined'||t==''||t==null){var i=r.getTime();t=e.setAttribute('id',n+i)}return e.id}}var comp = BDD_jQuery(BDD_jFindBySelector('#clipboard-alert-details-table'));if(comp==undefined) return &quot;[ERROR] not found the elemnt. &quot;; var ret = comp.find('tbody').find('tr')[0].cells.length;if(ret==undefined) return &quot;[ERROR] element doesn't have this method/property.&quot;; else return ret;
+
+
+	Snapshort       = [C:/BuildAgent/work/3be2949307100377/depot/ProcessSuite/xCPSaaS/Main/QE/BeaconNG/beaconng-web/beacon-web-test/target/jbehave\screenshort_20150512-154030.png]
+	at com.emc.auto.web.pages.WebDriverSeleniumPageEx.executeScript(WebDriverSeleniumPageEx.java:207)
+	at com.emc.auto.web.pages.WebDriverSeleniumPageEx.executeScriptEx(WebDriverSeleniumPageEx.java:184)
+	at com.emc.auto.web.comp.ComponentAdaptorBase.runMethodProp(ComponentAdaptorBase.java:189)
+	at com.emc.auto.web.comp.ComponentAdaptorBase.getMethodProp(ComponentAdaptorBase.java:131)
+	... 25 more
+Caused by: org.openqa.selenium.WebDriverException: comp.find(...).find(...)[0] is undefined
+Build info: version: '2.45.0', revision: '5017cb8', time: '2015-02-26 23:59:50'
+System info: host: 'BeaconW2K8R2-12', ip: '10.8.46.168', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_17'
+Driver info: driver.version: unknown
+Command duration or timeout: 224 milliseconds
+Build info: version: '2.45.0', revision: '5017cb8e7ca8e37638dc3091b2440b90a1d8686f', time: '2015-02-27 09:10:26'
+System info: host: 'BeaconW2K8R2-12', ip: '10.8.46.168', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_17'
+Session ID: 9233ed15-4347-4fba-8ff2-9cbc19fe659f
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities [{platform=WINDOWS, javascriptEnabled=true, acceptSslCerts=true, browserName=firefox, rotatable=false, locationContextEnabled=true, webdriver.remote.sessionid=9233ed15-4347-4fba-8ff2-9cbc19fe659f, version=35.0, databaseEnabled=true, cssSelectorsEnabled=true, handlesAlerts=true, webStorageEnabled=true, nativeEvents=false, applicationCacheEnabled=true, takesScreenshot=true}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:508)
+	at com.emc.auto.web.pages.WebDriverSeleniumPageEx.executeScript(WebDriverSeleniumPageEx.java:199)
+	... 28 more
+Caused by: org.openqa.selenium.remote.ScreenshotException: Screen shot has been taken
+Build info: version: '2.45.0', revision: '5017cb8e7ca8e37638dc3091b2440b90a1d8686f', time: '2015-02-27 09:10:26'
+System info: host: 'BeaconW2K8R2-12', ip: '10.8.46.168', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_17'
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:136)
+	... 31 more
+Caused by: org.openqa.selenium.WebDriverException: comp.find(...).find(...)[0] is undefined
+Build info: version: '2.45.0', revision: '5017cb8', time: '2015-02-26 23:59:50'
+System info: host: 'BeaconW2K8R2-12', ip: '10.8.46.168', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_17'
+Driver info: driver.version: unknown
+Build info: version: '2.45.0', revision: '5017cb8e7ca8e37638dc3091b2440b90a1d8686f', time: '2015-02-27 09:10:26'
+System info: host: 'BeaconW2K8R2-12', ip: '10.8.46.168', os.name: 'Windows Server 2008 R2', os.arch: 'amd64', os.version: '6.1', java.version: '1.7.0_17'
+Driver info: driver.version: unknown
+	at &lt;anonymous class&gt;.anonymous(http://xchange-fffull197.plengiscf-platqe.dctmlabs.com/#/ line 68 &gt; Function:1)
+	at &lt;anonymous class&gt;.handleEvaluateEvent(http://xchange-fffull197.plengiscf-platqe.dctmlabs.com/#/:68)
+</pre>
+</div>
+<div class="step notPerformed">When user allows copying items with change in memberships <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">Then the item <span class="step parameter">Subfolder</span> is in project files list <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+</div>
+<div class="scenario">
+<h2>Scenario: User attempts to move a private folder to public folder</h2>
+<div class="step successful">Given path to root folder</div>
+<div class="step failed">When user creates a private folder with <span class="step parameter">{ name: &quot;Private Folder For Move&quot;, description: &quot;Private Folder Description&quot;, membershipType: &quot;RESTRICTED&quot; }</span> <span class="keyword failed">(FAILED)</span></div>
+<div class="failure" style="border-width: 1px; border-style: dotted; border-color: black; width: 800px; "><a href="../screenshot_20150512-154708_1.png" target="_blank"><img border=0 src="../screenshot_20150512-154708_1.png" width=800 height=696 /></a><br></div>
+<div class="failure">
+<pre class="failure">com.emc.auto.web.exceptions.ComponentNotReadyException: 
+	Error              = a component doens't present or partially not rendered/visible. 
+	Component          = BDD_jQuery(BDD_jFindBySelector('.modal-content'))[0].jFind(BDD_jFindBySelector('#folder_name'))[0]
+
+
+	Snapshort       = [C:/BuildAgent/work/3be2949307100377/depot/ProcessSuite/xCPSaaS/Main/QE/BeaconNG/beaconng-web/beacon-web-test/target/jbehave\screenshot_20150512-154708_1.png]
+	at com.emc.auto.web.comp.html.HTMLComponentBase.waitForElementReady(HTMLComponentBase.java:75)
+	at com.emc.auto.web.comp.ComponentAdaptorBase.waitForReady(ComponentAdaptorBase.java:73)
+	at com.emc.auto.web.comp.html.HTMLTextbox.setValue(HTMLTextbox.java:36)
+	at com.emc.beacon.web.comp.FolderUpdateDialog.typeFolderName(FolderUpdateDialog.java:49)
+	at com.emc.beacon.web.pages.ProjectFilesPage.createPrivateFolder(ProjectFilesPage.java:278)
+	at com.emc.beacon.web.projectfiles.steps.FolderOperationSteps.createPrivateFolder(FolderOperationSteps.java:41)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.jbehave.core.steps.StepCreator$ParametrisedStep.perform(StepCreator.java:595)
+	at com.emc.auto.web.jbehave_ext.StepRetryDecorator.perform(StepRetryDecorator.java:47)
+	at org.jbehave.core.embedder.StoryRunner$FineSoFar.run(StoryRunner.java:535)
+	at org.jbehave.core.embedder.StoryRunner.runStepsWhileKeepingState(StoryRunner.java:515)
+	at org.jbehave.core.embedder.StoryRunner.runScenarioSteps(StoryRunner.java:479)
+	at org.jbehave.core.embedder.StoryRunner.runStepsWithLifecycle(StoryRunner.java:445)
+	at org.jbehave.core.embedder.StoryRunner.runCancellable(StoryRunner.java:305)
+	at org.jbehave.core.embedder.StoryRunner.run(StoryRunner.java:220)
+	at org.jbehave.core.embedder.StoryRunner.run(StoryRunner.java:181)
+	at org.jbehave.core.embedder.StoryManager$EnqueuedStory.call(StoryManager.java:262)
+	at org.jbehave.core.embedder.StoryManager$EnqueuedStory.call(StoryManager.java:229)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:722)
+Caused by: com.emc.auto.web.exceptions.ComponentNotReadyException: 
+	Current page title = Supplier Exchange - Project Files
+	Current URL 	   = http://xchange-fffull197.plengiscf-platqe.dctmlabs.com/#/saas_beacon_project/folders%252Fsaas_beacon_project%252F%2525252Fspaces%2525252F41990940-1db1-4e8c-b643-6e0b6297cc44%2525252Fobjects%2525252Facd6cd1ed49f44d49956c65bd05ff369%2525252F/saas_project_files
+	Server Time 	   = Tue May 12 22:47:32 PDT 2015	(This is approximate server time when error occurred, as server might be handling multiple requests)
+	Message         = 
+	Error              = a component doens't present or partially not rendered/visible. 
+	Component          = HTMLTextbox [locator=BDD_jQuery(BDD_jFindBySelector('.modal-content'))[0].jFind(BDD_jFindBySelector('#folder_name'))[0]]
+	Detail Error       = time out to wait for the component to be ready in 360 seconds
+
+
+	Snapshort       = [C:/BuildAgent/work/3be2949307100377/depot/ProcessSuite/xCPSaaS/Main/QE/BeaconNG/beaconng-web/beacon-web-test/target/jbehave\screenshot_20150512-154708_1.png]
+	at com.emc.auto.web.comp.ComponentAdaptorBase.waitForElementReady(ComponentAdaptorBase.java:81)
+	at com.emc.auto.web.comp.html.HTMLComponentBase.waitForElementReady(HTMLComponentBase.java:73)
+	... 25 more
+</pre>
+</div>
+<div class="step notPerformed">And user navigates to folder <span class="step parameter">Private Folder For Move</span> <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">And user creates a folder with <span class="step parameter">{ name: &quot;Subfolder&quot;, description: &quot;Subfolder Description&quot; }</span> <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">And user copies to clipboard the item with the name <span class="step parameter">Subfolder</span> <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">Given path to root folder <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">When user creates a folder with <span class="step parameter">{ name: &quot;Public Folder For Move&quot;, description: &quot;Public Folder Description&quot; }</span> <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">And user navigates to folder <span class="step parameter">Public Folder For Move</span> <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">And user creates a folder with <span class="step parameter">{ name: &quot;Another Folder&quot;, description: &quot;Another Folder Description&quot; }</span> <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">And user navigates to folder <span class="step parameter">Another Folder</span> <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">And user clicks move here <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">Then verify copy error details as <span class="step parameter">{ errorText: &quot;Item below requires your action.&quot;, folderName: Subfolder, reasonText: &quot;Item will become public&quot; }</span> <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">When user allows copying items with change in memberships <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">Then the item <span class="step parameter">Subfolder</span> is in project files list <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+</div>
+<div class="scenario">
+<h2>Scenario: Test data cleanup</h2>
+<div class="step successful">Given CL_Clipboard_7: delete space</div>
+</div>
+</div>
+
+</body>
+<!--  SyntaxHighlighter resources:  should be included at end of body -->
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shCore.css"/>
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shThemeRDark.css"/>
+<script language="javascript" src="./js/sh-3.0.83/shCore.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushBash.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushCss.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushDiff.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushGroovy.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJava.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJScript.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPlain.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPython.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushRuby.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushScala.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushXml.js"></script>
+<script language="javascript" src="./js/shBrushBdd.js"></script>
+<script type="text/javascript">
+    SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;    
+    SyntaxHighlighter.all();
+</script>
+</html>
